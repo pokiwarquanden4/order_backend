@@ -17,17 +17,12 @@ const jwtMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, func
         const config = (0, routesConfig_js_1.checkConfigJWT)(req.originalUrl);
         if (config.jwt) {
             req.body.role = config.role;
-            const user = (0, jwtService_js_1.authenJWT)(req, res);
-            if (user && !user.error) {
-                if (!user.refreshToken) {
-                    req.body = Object.assign(Object.assign({}, req.body), { jwtAccount: user });
-                }
-                else {
-                    req.body = Object.assign(Object.assign({}, req.body), { jwtAccount: user, refreshToken: user.refreshToken });
-                }
+            const authenResults = (0, jwtService_js_1.authenJWT)(req);
+            if (!authenResults.error) {
+                req.body = Object.assign(Object.assign({}, req.body), { jwtAccount: authenResults.userData, refreshToken: authenResults.refreshToken });
             }
-            if (user.error) {
-                return res.status(user.error.status).json(user.error.message);
+            else {
+                return res.status(authenResults.error.status).json(authenResults.error.message);
             }
         }
         return next();

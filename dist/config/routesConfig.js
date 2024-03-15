@@ -2,30 +2,30 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkConfigJWT = void 0;
 const routesConfig = {
-    users: {
-        jwt: false,
-        role: undefined,
-        login: {
-            jwt: false,
-            role: undefined
-        },
-        getUser: {
-            jwt: false,
-            role: undefined,
-            details: {
-                jwt: true,
-                role: "User"
-            },
-        },
-        create: {
-            jwt: false,
-            role: undefined,
-            account: {
-                jwt: false,
-                role: undefined,
-            },
-        }
-    },
+// users: {
+//     jwt: false,
+//     role: undefined,
+//     login: {
+//         jwt: false,
+//         role: undefined
+//     },
+//     getUser: {
+//         jwt: false,
+//         role: undefined,
+//         details: {
+//             jwt: true,
+//             role: "User"
+//         },
+//     },
+//     create: {
+//         jwt: false,
+//         role: undefined,
+//         account: {
+//             jwt: false,
+//             role: undefined,
+//         },
+//     }
+// },
 };
 const checkConfigJWT = (urlString) => {
     const urlParts = urlString.split("/");

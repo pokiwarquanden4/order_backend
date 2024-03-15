@@ -36,15 +36,15 @@ const createRefreshToken = (data) => {
     return refreshToken;
 };
 exports.createRefreshToken = createRefreshToken;
-const authenJWT = (req, res) => {
+const authenJWT = (req) => {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
-    let currentUser = {};
+    const currentUser = {
+        refreshToken: false
+    };
     if (token == null) {
-        currentUser.error = {
-            status: 401,
-            message: "Token is null"
-        };
+        currentUser.userData = "Customer";
+        return currentUser;
     }
     jsonwebtoken_1.default.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) {
@@ -85,11 +85,11 @@ const authenJWT = (req, res) => {
 };
 exports.authenJWT = authenJWT;
 const responseWithJWT = (req, res, obj) => __awaiter(void 0, void 0, void 0, function* () {
-    if (req.originalUrl === '/users/login' && res.locals.status === 200) {
+    if (req.originalUrl === '/login' && res.locals.status === 200) {
         return Object.assign({ accessToken: (0, exports.createJWT)(res.locals.data), refreshToken: (0, exports.createRefreshToken)(res.locals.data) }, obj);
     }
     const user = req.body.jwtAccount;
-    return req.body.refreshToken && user
+    return req.body.refreshToken && user !== "Customer"
         ? Object.assign({ accessToken: (0, exports.createJWT)(user), refreshToken: (0, exports.createRefreshToken)(user) }, obj) : Object.assign({}, obj);
 });
 exports.responseWithJWT = responseWithJWT;
