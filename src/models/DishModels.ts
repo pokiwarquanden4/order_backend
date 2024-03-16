@@ -18,6 +18,10 @@ const dishSchema = new mongoose.Schema(
             type: Object,
             require: true
         },
+        recommend: {
+            type: Boolean,
+            default: false
+        },
         description: {
             type: String,
         },

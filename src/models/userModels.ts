@@ -37,6 +37,14 @@ const userSchema = new mongoose.Schema(
             type: Schema.Types.ObjectId,
             ref: 'Voucher'
         }],
+        histories: [{
+            type: Schema.Types.ObjectId,
+            ref: 'History'
+        }],
+        penaltyAndReward: [{
+            type: Schema.Types.ObjectId,
+            ref: 'PenaltyAndReward'
+        }],
     },
     { timestamps: true }
 );
