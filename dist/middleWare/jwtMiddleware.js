@@ -15,7 +15,7 @@ const jwtService_js_1 = require("../jwtService/jwtService.js");
 const jwtMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const config = (0, routesConfig_js_1.checkConfigJWT)(req.originalUrl);
-        if (config.jwt) {
+        if (config.role) {
             req.body.role = config.role;
             const authenResults = (0, jwtService_js_1.authenJWT)(req);
             if (!authenResults.error) {

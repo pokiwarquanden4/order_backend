@@ -43,7 +43,10 @@ const authenJWT = (req) => {
         refreshToken: false
     };
     if (token == null) {
-        currentUser.userData = "Customer";
+        currentUser.error = {
+            status: 401,
+            message: "You don't have permission"
+        };
         return currentUser;
     }
     jsonwebtoken_1.default.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
@@ -89,7 +92,7 @@ const responseWithJWT = (req, res, obj) => __awaiter(void 0, void 0, void 0, fun
         return Object.assign({ accessToken: (0, exports.createJWT)(res.locals.data), refreshToken: (0, exports.createRefreshToken)(res.locals.data) }, obj);
     }
     const user = req.body.jwtAccount;
-    return req.body.refreshToken && user !== "Customer"
+    return req.body.refreshToken
         ? Object.assign({ accessToken: (0, exports.createJWT)(user), refreshToken: (0, exports.createRefreshToken)(user) }, obj) : Object.assign({}, obj);
 });
 exports.responseWithJWT = responseWithJWT;

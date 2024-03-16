@@ -3,22 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkConfigJWT = void 0;
 const routesConfig = {
 // users: {
-//     jwt: false,
 //     role: undefined,
 //     login: {
 //         jwt: false,
 //         role: undefined
 //     },
 //     getUser: {
-//         jwt: false,
 //         role: undefined,
 //         details: {
 //             jwt: true,
-//             role: "User"
+//             role: ["User"]
 //         },
 //     },
 //     create: {
-//         jwt: false,
 //         role: undefined,
 //         account: {
 //             jwt: false,
@@ -41,7 +38,7 @@ const checkConfigJWT = (urlString) => {
             return null;
         }
     }
-    return { jwt: config.jwt, role: config.role };
+    return { role: config.role };
 };
 exports.checkConfigJWT = checkConfigJWT;
 //# sourceMappingURL=routesConfig.js.map

@@ -5,7 +5,7 @@ import { requestData } from "../types/index.js";
 const jwtMiddleware = async (req: requestData, res, next) => {
     try {
         const config = checkConfigJWT(req.originalUrl);
-        if (config.jwt) {
+        if (config.role) {
             req.body.role = config.role;
             const authenResults = authenJWT(req);
 

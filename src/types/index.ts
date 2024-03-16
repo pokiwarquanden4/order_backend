@@ -14,7 +14,8 @@ export interface requestData {
 }
 
 export interface requestDataBody {
-    jwtAccount: jwtUserData | "Customer";
+    role: string[] | undefined;
+    jwtAccount: jwtUserData;
     refreshToken: boolean;
     [key: string]: any;
 }
@@ -22,5 +23,5 @@ export interface requestDataBody {
 export interface authenResults {
     error?: errorResponse,
     refreshToken: boolean,
-    userData?: jwtUserData | "Customer"
+    userData?: jwtUserData
 }

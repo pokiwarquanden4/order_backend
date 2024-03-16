@@ -1,7 +1,6 @@
 type RouteConfig = {
-    jwt: boolean;
-    role: string | undefined;
-    [key: string]: RouteConfig | boolean | string | undefined;
+    role: string[] | undefined;
+    [key: string]: RouteConfig | boolean | string[] | undefined;
 };
 
 type RoutesConfig = {
@@ -10,22 +9,19 @@ type RoutesConfig = {
 
 const routesConfig: RoutesConfig = {
     // users: {
-    //     jwt: false,
     //     role: undefined,
     //     login: {
     //         jwt: false,
     //         role: undefined
     //     },
     //     getUser: {
-    //         jwt: false,
     //         role: undefined,
     //         details: {
     //             jwt: true,
-    //             role: "User"
+    //             role: ["User"]
     //         },
     //     },
     //     create: {
-    //         jwt: false,
     //         role: undefined,
     //         account: {
     //             jwt: false,
@@ -51,5 +47,5 @@ export const checkConfigJWT = (urlString: string) => {
         }
     }
 
-    return { jwt: config.jwt, role: config.role };
+    return { role: config.role };
 };

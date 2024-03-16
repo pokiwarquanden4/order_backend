@@ -30,8 +30,11 @@ export const authenJWT = (req) => {
         refreshToken: false
     };
     if (token == null) {
-        currentUser.userData = "Customer";
-        return currentUser;
+        currentUser.error = {
+            status: 401,
+            message: "You don't have permission"
+        }
+        return currentUser
     }
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user: jwtUserData) => {
         if (err) {
@@ -77,7 +80,7 @@ export const responseWithJWT = async (req: requestData, res, obj) => {
     }
 
     const user = req.body.jwtAccount
-    return req.body.refreshToken && user !== "Customer"
+    return req.body.refreshToken
         ? {
             accessToken: createJWT(user),
             refreshToken: createRefreshToken(user),
