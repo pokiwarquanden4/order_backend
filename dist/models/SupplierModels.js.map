@@ -1,0 +1,1 @@
+{"version":3,"file":"SupplierModels.js","sourceRoot":"","sources":["../../src/models/SupplierModels.ts"],"names":[],"mappings":";;;;;;AAAA,wDAAgC;AAEhC,MAAM,cAAc,GAAG,IAAI,kBAAQ,CAAC,MAAM,CACtC;IACI,IAAI,EAAE;QACF,IAAI,EAAE,MAAM;QACZ,QAAQ,EAAE,IAAI;KACjB;CACJ,EACD,EAAE,UAAU,EAAE,IAAI,EAAE,CACvB,CAAC;AAGW,QAAA,aAAa,GAAG,kBAAQ,CAAC,KAAK,CAAC,UAAU,EAAE,cAAc,CAAC,CAAC"}

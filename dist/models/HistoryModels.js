@@ -23,52 +23,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModel = void 0;
+exports.HistoryModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-const userSchema = new mongoose_1.default.Schema({
-    account: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    avatar: {
-        type: String,
-        default: ""
-    },
-    phoneNumber: {
-        type: String,
-    },
-    name: {
-        type: String,
-        required: true,
-    },
-    address: {
-        type: String,
-    },
-    email: {
-        type: String,
-        require: true,
-    },
-    password: {
-        type: String,
-        require: true,
-    },
-    gender: {
-        type: Boolean,
-        default: false
-    },
-    vouchers: [{
+const HistorySchema = new mongoose_1.default.Schema({
+    dishes: [{
             type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'Voucher'
+            ref: 'Dish'
         }],
-    histories: [{
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'History'
-        }],
-    penaltyAndReward: [{
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'PenaltyAndReward'
-        }],
+    dishesNumber: {
+        type: Object,
+        default: {}
+    }
 }, { timestamps: true });
-exports.UserModel = mongoose_1.default.model("User", userSchema);
-//# sourceMappingURL=userModels.js.map
+exports.HistoryModel = mongoose_1.default.model("History", HistorySchema);
+//# sourceMappingURL=HistoryModels.js.map

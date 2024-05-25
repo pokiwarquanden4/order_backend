@@ -23,52 +23,39 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModel = void 0;
+exports.PaymentModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-const userSchema = new mongoose_1.default.Schema({
-    account: {
-        type: String,
+const PaymentSchema = new mongoose_1.default.Schema({
+    tableNumber: {
+        type: Number,
         required: true,
-        unique: true,
     },
-    avatar: {
+    dishes: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'History'
+    },
+    note: {
         type: String,
         default: ""
+    },
+    customerName: {
+        type: String,
     },
     phoneNumber: {
         type: String,
     },
-    name: {
-        type: String,
-        required: true,
+    status: {
+        type: Number,
+        default: 0
     },
-    address: {
-        type: String,
-    },
-    email: {
-        type: String,
-        require: true,
-    },
-    password: {
-        type: String,
-        require: true,
-    },
-    gender: {
-        type: Boolean,
-        default: false
+    user: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'User'
     },
     vouchers: [{
             type: mongoose_1.Schema.Types.ObjectId,
             ref: 'Voucher'
         }],
-    histories: [{
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'History'
-        }],
-    penaltyAndReward: [{
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'PenaltyAndReward'
-        }],
 }, { timestamps: true });
-exports.UserModel = mongoose_1.default.model("User", userSchema);
-//# sourceMappingURL=userModels.js.map
+exports.PaymentModel = mongoose_1.default.model("Payment", PaymentSchema);
+//# sourceMappingURL=PaymentModels.js.map

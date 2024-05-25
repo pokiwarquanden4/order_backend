@@ -23,52 +23,24 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModel = void 0;
+exports.PenaltyAndRewardModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-const userSchema = new mongoose_1.default.Schema({
-    account: {
-        type: String,
-        required: true,
-        unique: true,
+const PenaltyAndRewardSchema = new mongoose_1.default.Schema({
+    user: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'User'
     },
-    avatar: {
-        type: String,
-        default: ""
-    },
-    phoneNumber: {
+    reason: {
         type: String,
     },
-    name: {
-        type: String,
-        required: true,
+    value: {
+        type: Number,
+        default: 0
     },
-    address: {
-        type: String,
-    },
-    email: {
-        type: String,
-        require: true,
-    },
-    password: {
-        type: String,
-        require: true,
-    },
-    gender: {
-        type: Boolean,
-        default: false
-    },
-    vouchers: [{
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'Voucher'
-        }],
-    histories: [{
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'History'
-        }],
-    penaltyAndReward: [{
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'PenaltyAndReward'
-        }],
+    status: {
+        type: Number,
+        default: 0
+    }
 }, { timestamps: true });
-exports.UserModel = mongoose_1.default.model("User", userSchema);
-//# sourceMappingURL=userModels.js.map
+exports.PenaltyAndRewardModel = mongoose_1.default.model("PenaltyAndReward", PenaltyAndRewardSchema);
+//# sourceMappingURL=PenaltyAndRewardModels.js.map

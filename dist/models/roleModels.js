@@ -23,52 +23,27 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModel = void 0;
+exports.RoleModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-const userSchema = new mongoose_1.default.Schema({
-    account: {
+const roleSchema = new mongoose_1.default.Schema({
+    user: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    roleName: {
         type: String,
-        required: true,
-        unique: true,
+        require: true
     },
-    avatar: {
-        type: String,
-        default: ""
+    salary: {
+        type: Number,
+        default: 0
     },
-    phoneNumber: {
-        type: String,
+    workTimeStart: {
+        type: Date,
     },
-    name: {
-        type: String,
-        required: true,
-    },
-    address: {
-        type: String,
-    },
-    email: {
-        type: String,
-        require: true,
-    },
-    password: {
-        type: String,
-        require: true,
-    },
-    gender: {
-        type: Boolean,
-        default: false
-    },
-    vouchers: [{
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'Voucher'
-        }],
-    histories: [{
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'History'
-        }],
-    penaltyAndReward: [{
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'PenaltyAndReward'
-        }],
+    workTimeEnd: {
+        type: Date,
+    }
 }, { timestamps: true });
-exports.UserModel = mongoose_1.default.model("User", userSchema);
-//# sourceMappingURL=userModels.js.map
+exports.RoleModel = mongoose_1.default.model("Role", roleSchema);
+//# sourceMappingURL=roleModels.js.map
