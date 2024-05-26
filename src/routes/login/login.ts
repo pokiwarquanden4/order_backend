@@ -27,7 +27,7 @@ loginRoutes.get("/login/failed", (req, res) => {
     });
 });
 
-loginRoutes.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+loginRoutes.get("/google", passport.authenticate("google", { scope: ["profile", 'email'] }));
 
 loginRoutes.get(
     "/google/callback",

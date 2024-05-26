@@ -27,7 +27,7 @@ loginRoutes.get("/login/failed", (req, res) => {
         message: "failure",
     });
 });
-loginRoutes.get("/google", passport_1.default.authenticate("google", { scope: ["profile"] }));
+loginRoutes.get("/google", passport_1.default.authenticate("google", { scope: ["profile", 'email'] }));
 loginRoutes.get("/google/callback", passport_1.default.authenticate("google", {
     successRedirect: process.env.CLIENT_URL,
     failureRedirect: "/login/failed",

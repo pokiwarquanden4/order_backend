@@ -53,6 +53,10 @@ const userSchema = new mongoose_1.default.Schema({
         type: String,
         require: true,
     },
+    googleLogin: {
+        type: Boolean,
+        default: false
+    },
     gender: {
         type: Boolean,
         default: false
