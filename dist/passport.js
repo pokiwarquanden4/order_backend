@@ -16,6 +16,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 require('dotenv').config();
 const passport_1 = __importDefault(require("passport"));
 const userModels_1 = require("./models/userModels");
+const roleModels_1 = require("./models/roleModels");
+const types_1 = require("./types");
 passport_1.default.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
@@ -24,13 +26,17 @@ passport_1.default.use(new GoogleStrategy({
     return __awaiter(this, void 0, void 0, function* () {
         const existingUser = yield userModels_1.UserModel.findOne({ account: profile.id });
         if (!existingUser) {
-            userModels_1.UserModel.create({
+            const user = yield userModels_1.UserModel.create({
                 account: profile.id,
                 avatar: profile.picture,
                 name: profile.displayName,
                 email: profile.emails[0].value,
                 googleLogin: true,
                 password: '',
+            });
+            roleModels_1.RoleModel.create({
+                user: user.id,
+                roleName: types_1.roleList[0]
             });
         }
         done(null, profile);

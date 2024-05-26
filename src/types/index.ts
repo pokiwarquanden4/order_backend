@@ -25,3 +25,5 @@ export interface authenResults {
     refreshToken: boolean,
     userData?: jwtUserData
 }
+
+export const roleList = ['Customer', 'Chef', 'Waiter', 'Counter', 'Owner']
